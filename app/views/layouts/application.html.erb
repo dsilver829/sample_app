@@ -6,11 +6,17 @@
 <html>
   <head>
     <title><%= title %></title>
+    <%= csrf_meta_tag %>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
-    <%= stylesheet_link_tag 'blueprint/print', :media => 'print' %>
+    <%= render "layouts/stylesheets" %>
   </head>
-  <body>
-    <%= yield %>
+   <body>
+     <div class="container">
+       <%= render "layouts/header" %>
+      <section class="round">
+        <%= yield %>
+      </section>
+       <%= render "layouts/footer" %>
+    </div>
   </body>
 </html>
