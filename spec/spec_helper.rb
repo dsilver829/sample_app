@@ -1,4 +1,5 @@
 require 'rubygems'
+# require 'factory_girl'
 
   # --- Instructions ---
   # - Sort through your spec_helper file. Place as much environment loading

@@ -7,6 +7,8 @@ gem 'rails', '3.0.3'
 
 gem 'mysql2'
 
+gem 'gravatar_image_tag'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -32,7 +34,7 @@ end
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :test do
-  gem 'factory_girl_rails'
+  # gem 'factory_girl_rails', '1.0'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'webrat'
