@@ -25,12 +25,14 @@ gem 'mysql2'
 
 group :development do
   gem 'rspec-rails'
+  gem 'annotate-models'
 end
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :test do
+  gem 'factory_girl_rails'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'webrat'
