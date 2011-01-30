@@ -56,13 +56,14 @@ describe User do
   it "should reject duplicate email address, insensitive to case" do
     upcased_email = @attr[:email].upcase
     User.create(@attr.merge(:email => upcased_email))
-    user_with_duplicate_email = User.new(@attr)
-    user_with_duplicate_email
+    user_with_duplicate_email = User.create(@attr)
+    user_with_duplicate_email.should_not be_valid
   end
 
   describe "password_validations" do
     it "should require a password" do
-      user = User.new(@attr.merge(:password => "", :password_confirmation => ""))
+      user = User.new(@attr.merge(:password => "", 
+																	:password_confirmation => ""))
       user.should_not be_valid
     end
 

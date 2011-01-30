@@ -38,9 +38,12 @@ describe UsersController do
 
   describe "GET 'show'" do
     before(:each) do
-      @user = User.new(:name => "My Example", :email => "my@example.com",
-      :password => "agoodpassword", :password_confirmation => "agoodpassword")
-      @user.save
+      @attr = {	:name => "My Example", 
+								:email => "my@example.com",
+								:password => "agoodpassword", 
+								:password_confirmation => "agoodpassword" }
+      post :create, :user => @attr
+			@user = User.find_by_email(@attr[:email])
     end
 
     it "should be successful" do
@@ -94,7 +97,8 @@ describe UsersController do
     end
 
     describe "success" do
-      before(:each) do @attr = {  :name => "New User", :email => "new@user.com",
+      before(:each) do @attr = {  :name => "New User", 
+																	:email => "new@user.com",
                                   :password => "foobar",
                                   :password_confirmation => "foobar"}
       end

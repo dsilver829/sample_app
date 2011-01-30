@@ -47,10 +47,10 @@ describe "Users" do
 
     describe "success" do
       before(:each) do
-        @user = User.new( :name => "My Example", :email => "my@example.com",
-                          :password => "agoodpassword",
-                          :password_confirmation => "agoodpassword")
-        @user.save
+        @attr = { :name => "New Example", :email => "new@example.com",
+                  :password => "agoodpassword",
+                  :password_confirmation => "agoodpassword" }
+				@user = User.create(@attr)
       end
 
       it "should sign in and sign out a user" do
