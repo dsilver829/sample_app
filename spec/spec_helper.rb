@@ -49,12 +49,14 @@ require 'rubygems'
       controller.sign_in(user)
     end
 
-    def factory
-      @attr = { :name => "Test User",
-                :email => "test@user.com",
-                :password => "validpassword",
-                :password_confirmation => "validpassword"
-                }
-      User.create(@attr)
+    def factory(name = "Test User",
+                email = "test@user.com",
+                password = "validpassword",
+                password_confirmation = "validpassword")
+      User.create({ :name => name,
+                :email => email,
+                :password => password,
+                :password_confirmation => password_confirmation
+                })
     end
   end
