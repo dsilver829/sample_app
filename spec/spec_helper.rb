@@ -48,4 +48,13 @@ require 'rubygems'
     def test_sign_in(user)
       controller.sign_in(user)
     end
+
+    def factory
+      @attr = { :name => "Test User",
+                :email => "test@user.com",
+                :password => "validpassword",
+                :password_confirmation => "validpassword"
+                }
+      User.create(@attr)
+    end
   end
