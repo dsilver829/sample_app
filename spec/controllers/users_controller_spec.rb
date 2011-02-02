@@ -308,6 +308,24 @@ describe UsersController do
                                        :content => "Next")
       end
 
+      describe "for non-admins" do
+        it "should not display 'delete' links" do
+          get :index
+          response.should_not have_selector("a", :content => 'delete')
+        end
+      end
+
+      describe "for admins" do
+        before(:each) do
+          @user.toggle!(:admin)
+        end
+
+        it "should display 'delete' links" do
+          get :index
+          response.should have_selector("a", :content => 'delete')
+        end
+      end
+
       after(:each) do
         @user.destroy
         @second.destroy
@@ -351,6 +369,12 @@ describe UsersController do
       it "should redirect to the users page" do
         delete :destroy, :id => @user
         response.should redirect_to(users_path)
+      end
+
+      it "should not permit self-destruction" do
+        lambda do
+          delete :destroy, :id => @admin
+        end.should change(User, :count).by(0)
       end
     end
   end
