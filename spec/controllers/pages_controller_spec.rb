@@ -4,27 +4,47 @@ describe PagesController do
   render_views 
 
   before(:each) do
-    @base_title = "Ruby on Rails Tutorial Sample App | "
+    @base_title = "Ruby on Rails Tutorial Sample App"
   end
 
   describe "GET 'home'" do
-    it "should be successful" do
-      get 'home'
-      response.should be_success
-    end
 
-    it "should have the correct title" do
-      get 'home'
-      response.should have_selector("title",
-                                    :content => @base_title + "Home")
-    end
+    describe "when not signed in" do
 
-    describe "signed-in user" do
+      before(:each) do
+        get :home
+      end
+
+      it "should be successful" do
+        response.should be_success
+      end
+
+      it "should have the correct title" do
+        response.should have_selector("title",
+                                      :content => "#{@base_title} | Home")
+      end
+
+    end
+   
+    describe "when signed in" do
+
+      before(:each) do
+        @user = test_sign_in(Factory(:user))
+        other_user = Factory(:user, :email => Factory.next(:email))
+        other_user.follow!(@user)
+      end
+
+      it "should have the right follower/following counts" do
+        get :home
+        response.should have_selector("a",  :href => following_user_path(@user),
+                                            :content => "0 following")
+        response.should have_selector("a",  :href => followers_user_path(@user),
+                                            :content => "1 follower")
+      end
 
       describe "sidebar" do
 
         before(:each) do
-          @user = test_sign_in(Factory(:user))
           @mp1 = Factory(:micropost, :user => @user)
         end
 
@@ -91,7 +111,7 @@ describe PagesController do
     it "should have the correct title" do
       get 'contact'
       response.should have_selector("title",
-                                    :content => @base_title + "Contact")
+                                    :content => "#{@base_title} | Contact")
     end
   end
 
@@ -104,7 +124,7 @@ describe PagesController do
     it "should have the correct title" do
       get 'about'
       response.should have_selector("title",
-                                    :content => @base_title + "About")
+                                    :content => "#{@base_title} | About")
     end
   end
 
