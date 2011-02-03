@@ -92,5 +92,32 @@ describe MicropostsController do
       end
     end
   end
+
+  describe "GET 'index'" do
+
+    before(:each) do
+      @user = Factory(:user)
+    end
+
+    describe "failure" do
+
+      it "should redirect to the sign in page" do
+        get :index, :user_id => @user
+        response.should redirect_to(signin_path)
+      end
+
+    end
+
+    describe "success" do
+      
+      it "should redirect to the user/show page" do
+        test_sign_in(@user)
+        get :index, :user_id => @user
+        response.should redirect_to(user_path(@user))
+      end
+
+    end
+  end
+
 end
 

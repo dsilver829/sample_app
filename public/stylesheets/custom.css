@@ -194,30 +194,49 @@ h1.micropost {
   margin-bottom: 0.3em;
 }
 
-table.microposts {
+ul.microposts {
   margin-top: 1em;
+  padding: 0px;
+  margin: 0px;
 }
 
-table.microposts tr {
+ul.microposts li {
   height: 70px;
+  list-style: none;
 }
 
-table.microposts tr td.gravatar {
+ul.microposts li span.gravatar {
   border-top: 1px solid #ccc;
   vertical-align: top;
   width: 50px;
+  padding-top: 0px;
+  float: left;
 }
 
-table.microposts tr td.micropost {
+ul.microposts li span.micropost {
   border-top: 1px solid #ccc;
   vertical-align: top;
   padding-top: 10px;
+  padding-left: 10px;
+  float: left;
+  width: 315px;
 }
 
-table.microposts tr td.micropost span.timestamp {
+ul.micropost li span.micropost {
+    float: left;
+}
+
+ul.microposts li span.micropost span.timestamp {
   display: block;
   font-size: 85%;
   color: #666;
+}
+
+ul.microposts li span.delete {
+    display: block;
+    float: left;
+    padding-top: 25px;
+    padding-left: 20px;
 }
 
 div.user_info img {
@@ -243,4 +262,11 @@ form.new_micropost {
 form.new_micropost textarea {
   height: 4em;
   margin-bottom: 0;
+  width: 100%;
+}
+
+#character_counter {
+    float: right;
+    color: gray;
+    font-size: 18pt;
 }

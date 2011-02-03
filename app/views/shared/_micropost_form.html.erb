@@ -1,9 +1,43 @@
 <%= form_for @micropost do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
-    <%= f.text_area :content %>
-  </div>
-  <div class="actions">
+    <%= f.text_area :content,
+                    :onKeyPress => "return limit(this)",
+                    :onKeyUp => "return count(this, 'character_counter')"%>
+  <span class="actions">
     <%= f.submit "Submit" %>
+  </span>
+  <span id='character_counter'>140</span>
   </div>
+
+  <script language = "Javascript">
+    max = 140;
+
+    function limit(textArea) {
+      if (textArea.value.length == max)
+        return false;
+      return true;
+    }
+
+    function count(textArea, count) {
+      counter = createObject(count);
+      current = textArea.value;
+      if (current.length > max)
+        current = current.substring(0, max);
+      if (counter)
+        counter.innerText=max-current.length;
+      return true;
+    }
+
+    function createObject(id) {
+      if (document.getElementById) 
+        return document.getElementById(id);
+      else if (document.layers) 
+        return eval("document." + id);
+      else if (document.all) 
+        return eval("document.all." + id);
+      else 
+        return eval("document." + id);
+    }
+  </script>
 <% end %>
