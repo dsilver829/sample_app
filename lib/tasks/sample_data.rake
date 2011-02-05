@@ -42,5 +42,5 @@ def make_relationships
   following = users[1..50]
   followers = users[3..40]
   following.each { |followed| user.follow!(followed) }
-  followers.each { |follower|} follower.follow!(user })
+  followers.each { |follower| follower.follow!(user) }
 end

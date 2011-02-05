@@ -102,7 +102,7 @@ DEPENDENCIES
   faker
   gravatar_image_tag
   mysql2
-  rails (= 3.0.3)
+  rails
   rspec
   rspec-rails
   webrat
