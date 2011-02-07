@@ -6,6 +6,7 @@ class MicropostsController < ApplicationController
   before_filter :authorized_user, :only => :destroy
   
   def create
+    @user = current_user
     @micropost = current_user.microposts.build(params[:micropost])
     if @micropost.save
       flash[:success] = "Micropost created!"
